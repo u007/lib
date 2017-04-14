@@ -56,6 +56,9 @@ func TimeFromISOString(str string) (time.Time, error) {
 		return time.Time{}, fmt.Errorf("Empty time")
 	}
 	layout := "2006-01-02T15:04:05.000Z"
+	if len(str) <= 10 {
+		layout = "2006-01-02"
+	}
 	// str := "2014-11-12T11:45:26.371Z"
 	t, err := time.Parse(layout, str)
 
