@@ -2,6 +2,7 @@ package tools
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -20,10 +21,12 @@ func MaxInt(x, y int) int {
 }
 
 func RoundAsInt(val float64) int {
-	if val < 0 {
-		return int(val - 0.5)
-	}
-	return int(val + 0.5)
+	return int(val + math.Copysign(0.5, val))
+}
+
+func ToFixed(num float64, precision int) float64 {
+	output := math.Pow(10, float64(precision))
+	return float64(RoundAsInt(num*output)) / output
 }
 
 func ParseIntFromString(str string, default_value int) (int, error) {

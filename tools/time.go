@@ -55,7 +55,8 @@ func TimeFromISOString(str string) (time.Time, error) {
 	if str == "" {
 		return time.Time{}, fmt.Errorf("Empty time")
 	}
-	layout := "2006-01-02T15:04:05.000Z"
+	//layout := "2006-01-02T15:04:05.000Z"
+	layout := "2006-01-02T15:04:05-07:00" //moment js format
 	if len(str) <= 10 {
 		layout = "2006-01-02"
 	}
