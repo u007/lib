@@ -41,6 +41,18 @@ func ParseFloat64FromString(str string, default_value float64) (float64, error) 
 	return i, nil
 }
 
+func ParseInt64FromString(str string, default_value int64) (int64, error) {
+	if str == "" {
+		return default_value, nil
+	}
+
+	i, err := strconv.ParseInt(str, 10, 64)
+	if err != nil {
+		return default_value, err
+	}
+	return i, nil
+}
+
 func ParseIntFromString(str string, default_value int) (int, error) {
 	if str == "" {
 		return default_value, nil
