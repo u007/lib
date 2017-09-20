@@ -4,7 +4,7 @@
 ## Instalations
 
 ```
-go get -u github.com/u007/lib
+go get -u github.com/u007/lib/...
 ```
 
 ## Dates

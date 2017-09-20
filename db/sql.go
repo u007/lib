@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 	// "github.com/jmoiron/sqlx"
-	"lib/tools"
+	"github.com/u007/lib/tools"
 	// "reflect"
 	"strings"
 )

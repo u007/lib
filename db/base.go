@@ -2,11 +2,12 @@ package db
 
 import (
 	"fmt"
-	"github.com/fatih/structs"
-	"gopkg.in/gorp.v1"
-	"lib/tools"
 	"reflect"
 	"time"
+
+	"github.com/fatih/structs"
+	"github.com/u007/lib/tools"
+	"gopkg.in/gorp.v1"
 )
 
 var models = make(map[string]ModelInfo)
