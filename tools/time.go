@@ -2,8 +2,38 @@ package tools
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
+
+type Date struct {
+	time.Time
+}
+
+var DateLayout = "2006-01-02"
+
+var nilTime = (time.Time{}).UnixNano()
+
+func (d *Date) UnmarshalJSON(b []byte) (err error) {
+	s := strings.Trim(string(b), "\"")
+	if s == "null" || s == "" {
+		d.Time = time.Time{}
+		return
+	}
+	d.Time, err = time.Parse(DateLayout, s)
+	return
+}
+
+func (d *Date) MarshalJSON() ([]byte, error) {
+	if d.Time.UnixNano() == nilTime {
+		return []byte("null"), nil
+	}
+	return []byte(fmt.Sprintf("\"%s\"", d.Time.Format(DateLayout))), nil
+}
+
+func (d *Date) IsSet() bool {
+	return d.UnixNano() != nilTime
+}
 
 //https://golang.org/src/time/format.go
 
