@@ -50,6 +50,7 @@ func SystemExec(command string, args ...string) (string, error) {
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
+	cmd.Env = os.Environ()
 	err := cmd.Run()
 	if err != nil {
 		return stderr.String(), err
