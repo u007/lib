@@ -47,10 +47,12 @@ func SystemRunBg(command string, args ...string) (int, error) {
 func SystemExec(command string, args ...string) (string, error) {
 	cmd := exec.Command(command, args...)
 	var out bytes.Buffer
+	var stderr bytes.Buffer
 	cmd.Stdout = &out
+	cmd.Stderr = &stderr
 	err := cmd.Run()
 	if err != nil {
-		return "", err
+		return stderr.String(), err
 	}
 	// fmt.Printf("in all caps: %q\n", out.String())
 	return out.String(), nil
